@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/zackwag/ha-time-off/compare/v1.1.1...v1.1.2) (2026-10-22)
+
+
+### Code Refactoring
+
+* use homeassistant.turn_off for all domains except vacuum ([#4](https://github.com/zackwag/ha-time-off/issues/4)) ([5b11cac](https://github.com/zackwag/ha-time-off/commit/5b11cacb770e05aa180c5a55e7439be86e3f609d))
+
 ## [1.1.1](https://github.com/zackwag/ha-time-off/compare/v1.1.0...v1.1.1) (2026-10-22)
 
 
