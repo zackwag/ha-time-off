@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0](https://github.com/zackwag/ha-time-off/compare/v1.1.1...v1.2.0) (2026-10-22)
+
+
+### Features
+
+* add brand images for integration icon ([#7](https://github.com/zackwag/ha-time-off/issues/7)) ([f65333b](https://github.com/zackwag/ha-time-off/commit/f65333bc03ff8e509a31093f04e9009bd93f54c4))
+
+
+### Code Refactoring
+
+* use homeassistant.turn_off for all domains except vacuum ([#4](https://github.com/zackwag/ha-time-off/issues/4)) ([5b11cac](https://github.com/zackwag/ha-time-off/commit/5b11cacb770e05aa180c5a55e7439be86e3f609d))
+
 ## [1.1.1](https://github.com/zackwag/ha-time-off/compare/v1.1.0...v1.1.1) (2026-10-22)
 
 
