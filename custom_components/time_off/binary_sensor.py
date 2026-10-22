@@ -65,32 +65,32 @@ class TimeOffActiveSensor(BinarySensorEntity):
         return {"expiry": exp_str, "remaining": f"{seconds // 60}m {seconds % 60}s"}
 
     async def async_added_to_hass(self) -> None:
-        def _start_interval() -> None:
-            if self._unsub_interval is None:
-                self._unsub_interval = async_track_time_interval(
-                    self.hass, self._tick, _REFRESH_INTERVAL
-                )
-
-        def _stop_interval() -> None:
-            if self._unsub_interval is not None:
-                self._unsub_interval()
-                self._unsub_interval = None
-
         @callback
         def _update() -> None:
             self.async_write_ha_state()
             if self.is_on:
-                _start_interval()
+                self._start_interval()
             else:
-                _stop_interval()
+                self._stop_interval()
 
         self.async_on_remove(
             async_dispatcher_connect(self.hass, signal_update(self._target_id), _update)
         )
-        self.async_on_remove(_stop_interval)
+        self.async_on_remove(self._stop_interval)
 
         if self.is_on:
-            _start_interval()
+            self._start_interval()
+
+    def _start_interval(self) -> None:
+        if self._unsub_interval is None:
+            self._unsub_interval = async_track_time_interval(
+                self.hass, self._tick, _REFRESH_INTERVAL
+            )
+
+    def _stop_interval(self) -> None:
+        if self._unsub_interval is not None:
+            self._unsub_interval()
+            self._unsub_interval = None
 
     @callback
     def _tick(self, now: datetime) -> None:
