@@ -48,6 +48,7 @@ _TURN_OFF_SERVICES = {
 }
 
 
+
 async def _async_turn_off_entity(hass: HomeAssistant, entity_id: str) -> None:
     domain = entity_id.split(".")[0]
     service_domain, service = _TURN_OFF_SERVICES.get(domain, ("homeassistant", "turn_off"))
