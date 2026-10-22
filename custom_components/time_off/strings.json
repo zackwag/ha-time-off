@@ -1,0 +1,87 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "Add Device to Time Off",
+                "description": "Select the device you want to manage. This integration will automatically turn it off after the duration you set.",
+                "data": {
+                    "entity": "Select Entity (Light, Fan, AC, etc.)"
+                }
+            }
+        },
+        "abort": {
+            "already_configured": "This device is already being managed by another Time Off instance."
+        }
+    },
+    "entity": {
+        "number": {
+            "time_off": {
+                "name": "Time Off"
+            }
+        },
+        "sensor": {
+            "off_after": {
+                "name": "Off After"
+            }
+        },
+        "switch": {
+            "trigger_only": {
+                "name": "Time Off Trigger Only"
+            }
+        },
+        "binary_sensor": {
+            "timer_active": {
+                "name": "Timer Active",
+                "state_attributes": {
+                    "expiry": {
+                        "name": "Expiry Time"
+                    },
+                    "remaining": {
+                        "name": "Time Remaining"
+                    }
+                }
+            }
+        }
+    },
+    "device_automation": {
+        "trigger_type": {
+            "timer_expired": "Time Off: When timer expires"
+        }
+    },
+    "services": {
+        "start_timer": {
+            "name": "Start/Reset Timer",
+            "description": "Manually starts or resets the timer for a device managed by Time Off.",
+            "fields": {
+                "entity_id": {
+                    "name": "Target Device",
+                    "description": "The device entity that Time Off is managing (e.g. light.porch_light, fan.bathroom_fan). This is the original device, NOT the Time Off sensor or switch."
+                }
+            }
+        },
+        "stop_timer": {
+            "name": "Stop/Cancel Timer",
+            "description": "Stops the active timer immediately without turning the device off and without firing the timer_expired event.",
+            "fields": {
+                "entity_id": {
+                    "name": "Target Device",
+                    "description": "The device entity that Time Off is managing (e.g. light.porch_light, fan.bathroom_fan). This is the original device, NOT the Time Off sensor or switch."
+                }
+            }
+        },
+        "set_off_after": {
+            "name": "Set Off After",
+            "description": "Immediately restarts the timer with a new duration, without changing the Time Off default. If minutes is 0, the timer is stopped.",
+            "fields": {
+                "entity_id": {
+                    "name": "Target Device",
+                    "description": "The device entity that Time Off is managing (e.g. light.porch_light, fan.bathroom_fan). This is the original device, NOT the Time Off sensor or switch."
+                },
+                "minutes": {
+                    "name": "Minutes",
+                    "description": "The new duration in minutes (0 to 1440). Set to 0 to stop the timer immediately."
+                }
+            }
+        }
+    }
+}

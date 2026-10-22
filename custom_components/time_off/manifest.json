@@ -1,0 +1,15 @@
+{
+    "domain": "time_off",
+    "name": "Time Off",
+    "codeowners": [
+        "@zackwag"
+    ],
+    "config_flow": true,
+    "dependencies": [],
+    "documentation": "https://github.com/zackwag/ha-time-off",
+    "integration_type": "service",
+    "iot_class": "local_push",
+    "issue_tracker": "https://github.com/zackwag/ha-time-off/issues",
+    "requirements": [],
+    "version": "1.0.0"
+}

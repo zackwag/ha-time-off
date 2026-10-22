@@ -1,0 +1,83 @@
+# custom_components/time_off/services.yaml
+
+start_timer:
+  name: "Start/Reset Timer"
+  description: "Manually starts or resets the timer for a device managed by Time Off."
+  fields:
+    entity_id:
+      name: "Target Device"
+      description: "The device entity that Time Off is managing (e.g. light.porch_light, fan.bathroom_fan). This is the original device, NOT the Time Off sensor or switch."
+      required: true
+      selector:
+        entity:
+          multiple: false
+          filter:
+            - domain: light
+            - domain: switch
+            - domain: fan
+            - domain: media_player
+            - domain: cover
+            - domain: climate
+            - domain: input_boolean
+            - domain: humidifier
+            - domain: siren
+            - domain: valve
+            - domain: vacuum
+
+stop_timer:
+  name: "Stop/Cancel Timer"
+  description: "Stops the active timer immediately without turning the device off and without firing the timer_expired event."
+  fields:
+    entity_id:
+      name: "Target Device"
+      description: "The device entity that Time Off is managing (e.g. light.porch_light, fan.bathroom_fan). This is the original device, NOT the Time Off sensor or switch."
+      required: true
+      selector:
+        entity:
+          multiple: false
+          filter:
+            - domain: light
+            - domain: switch
+            - domain: fan
+            - domain: media_player
+            - domain: cover
+            - domain: climate
+            - domain: input_boolean
+            - domain: humidifier
+            - domain: siren
+            - domain: valve
+            - domain: vacuum
+
+set_off_after:
+  name: "Set Off After"
+  description: "Immediately restarts the timer with a new duration, without changing the Time Off default. If minutes is 0, the timer is stopped."
+  fields:
+    entity_id:
+      name: "Target Device"
+      description: "The device entity that Time Off is managing (e.g. light.porch_light, fan.bathroom_fan). This is the original device, NOT the Time Off sensor or switch."
+      required: true
+      selector:
+        entity:
+          multiple: false
+          filter:
+            - domain: light
+            - domain: switch
+            - domain: fan
+            - domain: media_player
+            - domain: cover
+            - domain: climate
+            - domain: input_boolean
+            - domain: humidifier
+            - domain: siren
+            - domain: valve
+            - domain: vacuum
+    minutes:
+      name: "Minutes"
+      description: "The new duration in minutes. Set to 0 to stop the timer immediately."
+      required: true
+      selector:
+        number:
+          min: 0
+          max: 1440
+          step: 0.1
+          unit_of_measurement: "min"
