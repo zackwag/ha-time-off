@@ -41,9 +41,7 @@ def _is_active(state_obj: State | None) -> bool:
     return bool(state_obj and state_obj.state not in _INACTIVE_STATES)
 
 
-async def _async_turn_off_entity(
-    hass: HomeAssistant, entity_id: str, context: Context | None = None
-) -> None:
+async def _async_turn_off_entity(hass: HomeAssistant, entity_id: str) -> None:
     domain = entity_id.split(".")[0]
     if domain == "cover":
         service_domain, service = "cover", "close_cover"
@@ -54,7 +52,7 @@ async def _async_turn_off_entity(
     else:
         service_domain, service = "homeassistant", "turn_off"
     await hass.services.async_call(
-        service_domain, service, {"entity_id": entity_id}, context=context or Context()
+        service_domain, service, {"entity_id": entity_id}, context=Context()
     )
 
 
@@ -316,7 +314,7 @@ class TimeOffCoordinator:
         unsub_state = async_track_state_change_event(self.hass, [eid], _on_state_change)
         unsub_cap = async_track_point_in_time(
             self.hass, _resolve,
-            dt_util.utcnow() + timedelta(seconds=RECOVERY_GRACE_SECONDS),
+            dt_util.now() + timedelta(seconds=RECOVERY_GRACE_SECONDS),
         )
         try:
             await ready
