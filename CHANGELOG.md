@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/zackwag/ha-time-off/compare/v1.2.0...v1.2.1) (2026-10-22)
+
+
+### Bug Fixes
+
+* configure release-please to bump manifest.json version ([#10](https://github.com/zackwag/ha-time-off/issues/10)) ([37a1e8a](https://github.com/zackwag/ha-time-off/commit/37a1e8a14a21243044baff51150a5b3598b3dbd3))
+
 ## [1.2.0](https://github.com/zackwag/ha-time-off/compare/v1.1.1...v1.2.0) (2026-10-22)
 
 
