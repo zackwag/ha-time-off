@@ -30,7 +30,14 @@
   "packages": {
     ".": {
       "changelog-path": "CHANGELOG.md",
-      "include-component-in-tag": false
+      "include-component-in-tag": false,
+      "extra-files": [
+        {
+          "type": "json",
+          "path": "custom_components/time_off/manifest.json",
+          "jsonpath": "$.version"
+        }
+      ]
     }
   }
 }
