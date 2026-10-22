@@ -41,20 +41,18 @@ def _is_active(state_obj: State | None) -> bool:
     return bool(state_obj and state_obj.state not in _INACTIVE_STATES)
 
 
-_TURN_OFF_SERVICES = {
-    "cover": ("cover", "close_cover"),
-    "valve": ("valve", "close_valve"),
-    "vacuum": ("vacuum", "return_to_base"),
-}
-
-
-
 async def _async_turn_off_entity(hass: HomeAssistant, entity_id: str) -> None:
     domain = entity_id.split(".")[0]
-    service_domain, service = _TURN_OFF_SERVICES.get(domain, ("homeassistant", "turn_off"))
-    await hass.services.async_call(
-        service_domain, service, {"entity_id": entity_id}, context=Context()
-    )
+    # homeassistant.turn_off delegates to the domain's turn_off, but vacuum.turn_off
+    # powers down instead of docking — use return_to_base for vacuums.
+    if domain == "vacuum":
+        await hass.services.async_call(
+            "vacuum", "return_to_base", {"entity_id": entity_id}, context=Context()
+        )
+    else:
+        await hass.services.async_call(
+            "homeassistant", "turn_off", {"entity_id": entity_id}, context=Context()
+        )
 
 
 class TimeOffCoordinator:
