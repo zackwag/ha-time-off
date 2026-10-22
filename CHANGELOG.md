@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/zackwag/ha-time-off/compare/v1.0.0...v1.1.0) (2026-10-22)
+
+
+### Features
+
+* initial commit of Time Off integration ([95c33e4](https://github.com/zackwag/ha-time-off/commit/95c33e4a325fb5a56ef5c023319df71ac401f545))
+
+
+### Code Refactoring
+
+* dict lookup for turn-off services, extract binary sensor closures to methods ([#2](https://github.com/zackwag/ha-time-off/issues/2)) ([dedbef2](https://github.com/zackwag/ha-time-off/commit/dedbef23d8ae557998f3c41486b1111e5fa9fdc1))
+
 ## 1.0.0
 
 ### Features
