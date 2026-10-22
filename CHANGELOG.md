@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/zackwag/ha-time-off/compare/v1.1.0...v1.1.1) (2026-10-22)
+
+
+### Bug Fixes
+
+* remove unused context param and fix inconsistent time util ([#1](https://github.com/zackwag/ha-time-off/issues/1)) ([cf18598](https://github.com/zackwag/ha-time-off/commit/cf18598634c8218735cb7a4c70a51a60e4c696a6))
+
 ## [1.1.0](https://github.com/zackwag/ha-time-off/compare/v1.0.0...v1.1.0) (2026-10-22)
 
 
