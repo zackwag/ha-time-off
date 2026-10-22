@@ -41,16 +41,17 @@ def _is_active(state_obj: State | None) -> bool:
     return bool(state_obj and state_obj.state not in _INACTIVE_STATES)
 
 
+_TURN_OFF_SERVICES = {
+    "cover": ("cover", "close_cover"),
+    "valve": ("valve", "close_valve"),
+    "vacuum": ("vacuum", "return_to_base"),
+}
+
+
+
 async def _async_turn_off_entity(hass: HomeAssistant, entity_id: str) -> None:
     domain = entity_id.split(".")[0]
-    if domain == "cover":
-        service_domain, service = "cover", "close_cover"
-    elif domain == "valve":
-        service_domain, service = "valve", "close_valve"
-    elif domain == "vacuum":
-        service_domain, service = "vacuum", "return_to_base"
-    else:
-        service_domain, service = "homeassistant", "turn_off"
+    service_domain, service = _TURN_OFF_SERVICES.get(domain, ("homeassistant", "turn_off"))
     await hass.services.async_call(
         service_domain, service, {"entity_id": entity_id}, context=Context()
     )
